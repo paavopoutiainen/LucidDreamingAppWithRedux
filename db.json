@@ -1,0 +1,284 @@
+{
+  "dreams": [
+    {
+      "id": 1,
+      "name": "ihmisiä",
+      "content": "lorem lksdjfkljsdlfsdf",
+      "date": "2019-05-30T17:30:31.098Z",
+      "lucid": true
+    },
+    {
+      "id": 2,
+      "name": "unia",
+      "content": "lorem lksdjfkljsdlfsdf",
+      "date": "2019-05-30T18:39:34.091Z",
+      "lucid": true
+    },
+    {
+      "id": 3,
+      "name": "jumpe",
+      "content": "lorem lksdjfkljsdlfsdf",
+      "date": "2019-05-30T19:20:14.298Z",
+      "lucid": true
+    },
+    {
+      "name": "erikoinen uni",
+      "content": "olipas erikoinen uni kerrassaan",
+      "date": "2019-10-24T14:56:53.432Z",
+      "lucid": true,
+      "id": 4
+    },
+    {
+      "name": "painajainen",
+      "content": "apua siellä oli mörkö\n",
+      "date": "2019-10-24T14:57:46.762Z",
+      "lucid": true,
+      "id": 5
+    },
+    {
+      "name": "dfhdgh",
+      "content": "fghfgh",
+      "date": "2019-10-24T14:58:19.230Z",
+      "lucid": true,
+      "id": 6
+    },
+    {
+      "name": "fghgfhfg",
+      "content": "fdghdfhdf",
+      "date": "2019-10-24T14:58:19.865Z",
+      "lucid": true,
+      "id": 7
+    },
+    {
+      "name": "dfgdfg",
+      "content": "dgdfg",
+      "date": "2019-10-24T15:24:06.232Z",
+      "lucid": true,
+      "id": 8
+    },
+    {
+      "name": "apuuuva",
+      "content": "",
+      "date": "2019-11-11T14:50:10.597Z",
+      "lucid": true,
+      "id": 9
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-13T13:13:27.300Z",
+      "lucid": true,
+      "id": 10
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-13T13:17:29.351Z",
+      "lucid": true,
+      "id": 11
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-13T13:31:18.798Z",
+      "lucid": true,
+      "id": 12
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-13T13:32:41.079Z",
+      "lucid": true,
+      "id": 13
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-13T13:35:23.630Z",
+      "lucid": true,
+      "id": 14
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-13T13:41:32.039Z",
+      "lucid": true,
+      "id": 15
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-13T13:55:34.992Z",
+      "lucid": true,
+      "id": 16
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-13T13:55:44.684Z",
+      "lucid": true,
+      "id": 17
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-13T13:55:47.661Z",
+      "lucid": true,
+      "id": 18
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-13T13:56:04.522Z",
+      "lucid": true,
+      "id": 19
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-13T13:56:07.502Z",
+      "lucid": true,
+      "id": 20
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-13T13:56:09.990Z",
+      "lucid": true,
+      "id": 21
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-13T13:56:53.212Z",
+      "lucid": true,
+      "id": 22
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-13T13:57:11.689Z",
+      "lucid": true,
+      "id": 23
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:47:15.781Z",
+      "lucid": true,
+      "id": 24
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:49:14.819Z",
+      "lucid": true,
+      "id": 25
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:54:54.842Z",
+      "lucid": true,
+      "id": 26
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:54:57.384Z",
+      "lucid": true,
+      "id": 27
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:55:01.600Z",
+      "lucid": true,
+      "id": 28
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:55:02.886Z",
+      "lucid": true,
+      "id": 29
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:55:51.044Z",
+      "lucid": true,
+      "id": 30
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:55:52.502Z",
+      "lucid": true,
+      "id": 31
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:55:55.665Z",
+      "lucid": true,
+      "id": 32
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:55:56.936Z",
+      "lucid": true,
+      "id": 33
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:56:01.284Z",
+      "lucid": true,
+      "id": 34
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:56:03.922Z",
+      "lucid": true,
+      "id": 35
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:56:05.256Z",
+      "lucid": true,
+      "id": 36
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:56:06.887Z",
+      "lucid": true,
+      "id": 37
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:56:07.688Z",
+      "lucid": true,
+      "id": 38
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:57:26.476Z",
+      "lucid": true,
+      "id": 39
+    },
+    {
+      "name": "",
+      "content": "",
+      "date": "2019-11-16T13:57:28.176Z",
+      "lucid": true,
+      "id": 40
+    }
+  ]
+}
