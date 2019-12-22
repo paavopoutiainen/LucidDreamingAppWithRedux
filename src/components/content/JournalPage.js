@@ -6,7 +6,10 @@ import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
-
+import store from "../../store"
+import { connect } from "react-redux"
+import { newFormActionCreator } from "../../reducers/newDreamFormsReducer"
+ 
 
 
 const useStyles = makeStyles(theme => ({
@@ -18,36 +21,38 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function JournalPage() {
+function JournalPage(props) {
   const classes = useStyles();
 
-  const [numberOfDreams, toggle] = useState(1)
-  const [dreamComponents, setDreams] = useState()
-
-  function createNewDream(){
-   /// addNewObjectToState()
-    toggle(numberOfDreams +1)
-    
-    let helpArray = []
-    for(var i = 1; i <= numberOfDreams; i++){
-      helpArray.push(i)
+  var index = 100
+  const newDream = createNewDream(index)
+ 
+  function createNewDream(index){
+   
+    return function newDream() {
+      index = index + 1
+      return store.dispatch(newFormActionCreator(<NewDream key={index} number={index} ></NewDream>))
     }
-    
-    setDreams(
-      <Grid container spacing ={1} styles={{}}>
-        { helpArray.map((x, index) => <NewDream key={index} number={x} ></NewDream>)}
-      </Grid>
-    )
-    
   }
   return (
-    <div style={{ padding: 15 }}>
-      <Fab onClick={() => createNewDream()} color="primary" aria-label="add" className={classes.fab}>
-        <AddIcon />
-      </Fab>
-      {dreamComponents}
+    <div className="container" style={{ padding: 15 }}>
+      <div>
+        <Fab onClick={() => newDream()} color="primary" aria-label="add" className={classes.fab}>
+          <AddIcon />
+        </Fab>
+      </div>
+      <Grid container spacing ={1} styles={{}}>
+        {props.dreamComponents}
+      </Grid>
+   
     </div>
     )
   }
 
-  export default JournalPage
+  const mapStateToProps = (state) => {
+    return {
+      dreamComponents: state.newDreamForms
+    }
+  }
+
+  export default connect(mapStateToProps, { newFormActionCreator })(JournalPage)

@@ -46,7 +46,7 @@ function App(props) {
   
 
   return (
-    <div>
+    <div >
       <BrowserRouter>
         <Navbar></Navbar>
         <Switch>
