@@ -8,17 +8,12 @@ import IdeasPage from "./components/content/IdeasPage.js"
 import Navbar from "./components/layout/Navbar"
 import DreamList from "./components/dreams/Dreamlist.js"
 import DreamDetails from "./components/dreams/DreamDetails.js"
-import axios from "axios"
 import SignIn from "./components/auth/SignIn"
 import SignUp from "./components/auth/SignUp"
-import moment from "moment"
 import { getDreams } from "./reducers/dreamsReducer"
 import { connect } from "react-redux"
 import Snackbar from '@material-ui/core/Snackbar';
 import { emptyNotificationActionCreator } from "./reducers/notificationReducer"
-
-
-
 
 
 
@@ -35,24 +30,15 @@ function Home() {
 
 function App(props) {
 
-  const [dreams, setDreams] = useState([])
   const [open, setOpen] = useState(false);
 
-  const fetchDreams = async () => {
-    const dreams = await axios.get("http://localhost:3001/api/dreams")
-    const dateFixedDreams = dreams.data.map(d => {
-      const date = moment(d.date)
-      return {...d, date: date.format('MMMM Do YYYY, h:mm:ss a')}
-    })
-    setDreams(dateFixedDreams)
-  }
 
   useEffect(() => {
-    fetchDreams()
+    //fetchDreams()
     props.getDreams()
   }, [])
 
-  const dreamById = (id) => dreams.find(x => x.id === id)
+  const dreamById = (id) => props.dreams.find(x => x.id === id)
 
   function handleClose(){
     props.emptyNotificationActionCreator()
@@ -75,7 +61,7 @@ function App(props) {
             <Route path = "/signup" component={SignUp}></Route>
             <Route exact path = "/analyze/dream/:id" render={({match}) => {
               console.log(match.params.id)
-              console.log(dreams)
+             
               console.log(dreamById(match.params.id))
               return <AnalyzeDream dream={dreamById(match.params.id)}></AnalyzeDream>
 
@@ -102,7 +88,8 @@ function App(props) {
 const mapStateToProps = (state) => {
   return {
     notification: state.notification.notification,
-    snackbarOpen: state.notification.open
+    snackbarOpen: state.notification.open,
+    dreams: state.dreams
   }
 }
 

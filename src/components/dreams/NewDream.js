@@ -57,19 +57,18 @@ const NewDream = (props) => {
       }
       try{
         const response = await props.addDream(newDream)
-        if(!response) {
-          // eslint-disable-next-line no-undef
-          throw new Exception()
+        console.log("yhyy",response)
+        if(!response){
+          throw new Error("Dream not saved")
         }
         props.newNotificationActionCreator("Dream was saved")
         setHidden(true)
         setDream({name:"", content:""})
       }catch(exception){
-        console.error("ggggg",exception)
+        console.error(exception)
         props.newNotificationActionCreator("Wasn't able to save the dream")
       }
-      
-   }
+    }
 
    const handleClose = () => {
     setHidden(true)

@@ -22,15 +22,22 @@ export const getDreams = () => {
 
 export const addDream = (dream) => {
     return async dispatch => {
-       
+        try {
             const newDream = await dreamsService.create(dream)
-            console.log("ffff",newDream)
             if(newDream){
                 dispatch({
                     type: "ADD_DREAM", 
                     data: newDream
                 })
+                return true
+            }else {
+                throw new Error("bad dream")
             }
+        } catch (exception) {
+            console.error(exception)
+            return false
+        }
+            
             
         
         

@@ -38,6 +38,7 @@ function JournalPage() {
         { helpArray.map((x, index) => <NewDream key={index} number={x} ></NewDream>)}
       </Grid>
     )
+    
   }
   return (
     <div style={{ padding: 15 }}>

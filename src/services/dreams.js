@@ -13,10 +13,9 @@ const getAll = async () => {
 const create = async(newDream) => {
     try {
       const response = await axios.post("http://localhost:3001/api/dreams", newDream)
-      console.log("here?", response)
       return response.data
     } catch (exception) {
-      console.error("eeeeeeee",exception)
+      console.error(exception)
     }
  }
 
