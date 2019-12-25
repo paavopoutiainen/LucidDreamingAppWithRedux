@@ -45,21 +45,46 @@ const NewDream = (props) => {
     const [thisHidden, setHidden] = useState(false)
     const style = thisHidden ? {display:"none"} :{}
 
+    var reduxStateOfThisInstance = props.contents.find(x => x.index === props.index)
   
     useEffect(() => {
-      console.log(props.number)
-      if(props.content.find(x => x.index === props.number)){
-        
-        setDream(props.content.find(x => x.index === props.number).content)
+      console.log(props.index)
+      
+
+      if(reduxStateOfThisInstance){
+        console.log("here2")
+        setDream(reduxStateOfThisInstance.content)
+        setHidden(reduxStateOfThisInstance.hidden)
       }
     }, [])
 
+
+    // myös eka renderöinti aiheuttaa tämän hookin kutsun, eli ilmeisesti koska state luodaan
     useEffect(() => {
+      console.log("here")
       store.dispatch(changeContentActionCreator({
-        index: props.number,
-        content: dream
+        index: props.index,
+        content: dream,
+        hidden: thisHidden
       }))
     }, [dream])
+
+    /* okei eli nyt me varmaan halutaan siirtää toi newDreamin state kokonaan redux 
+    storeen koska meillä pitää näköjään kuitenkin olla se siellä, niin sama kai se on pitää siellä 
+    yksinomaan
+    
+    ja se state, joka kuvastaa tätä newDreamii voisi olla taulukko, jossa olisi se content ja sitten se hidden kenttä ja index
+    eli 
+    [
+      {
+        index: 1,
+        content: {name: klsjklfdjsf, content: dsgfjkldfhdf},
+        hidden: true
+      }
+
+    ]
+    
+    */
 
    
     function handleChange(e){
@@ -80,6 +105,13 @@ const NewDream = (props) => {
         }
         props.newNotificationActionCreator("Dream was saved")
         setHidden(true)
+        //täällä me voitais oikeastaan tehdö siten, että poistetaan redux stoesta kokonaan se kyseisen indeksin newDream tai sitten ei 
+        //koska se aiheuttaa ongelmia siihen että sitten pitäisi poistaa myös se kyseinen newDreamkomponentti storesta
+        store.dispatch(changeContentActionCreator({
+          index: props.index,
+          content: {name: "", content: ""},
+          hidden: true
+        }))
       }catch(exception){
         console.error(exception)
         props.newNotificationActionCreator("Wasn't able to save the dream")
@@ -87,6 +119,11 @@ const NewDream = (props) => {
     }
 
    const handleClose = () => {
+    store.dispatch(changeContentActionCreator({
+      index: props.number,
+      content: {name: "", content: ""},
+      hidden: true
+    }))
     setHidden(true)
    }
 
@@ -139,7 +176,7 @@ const NewDream = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    content: state.newDreamContent
+    contents: state.newDreamContent
   }
 }
 

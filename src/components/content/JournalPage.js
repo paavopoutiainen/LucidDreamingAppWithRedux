@@ -24,12 +24,12 @@ const useStyles = makeStyles(theme => ({
 function JournalPage(props) {
   const classes = useStyles();
 
+
   var index = props.dreamComponents.length
  
   const handleClick = () => {
-      store.dispatch(newFormActionCreator(<NewDream key={index} number={index + 1} ></NewDream>))
-  }
-     
+      store.dispatch(newFormActionCreator(<NewDream key={index} indexr={index + 1} ></NewDream>))
+  } 
   
   return (
     <div className="container" style={{ padding: 15 }}>
