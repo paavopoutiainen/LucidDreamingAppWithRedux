@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,8 +9,9 @@ import CloseIcon from '@material-ui/icons/Close';
 import { connect } from "react-redux"
 import { addDream } from "../../reducers/dreamsReducer"
 import { newNotificationActionCreator } from "../../reducers/notificationReducer"
-
-
+import { changeContentActionCreator } from "../../reducers/newDreamContentReducer"
+import store from "../../store"
+ 
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -43,8 +44,24 @@ const NewDream = (props) => {
     const [dream, setDream] = useState({name: "", content:""})
     const [thisHidden, setHidden] = useState(false)
     const style = thisHidden ? {display:"none"} :{}
-   
 
+  
+    useEffect(() => {
+      console.log(props.number)
+      if(props.content.find(x => x.index === props.number)){
+        
+        setDream(props.content.find(x => x.index === props.number).content)
+      }
+    }, [])
+
+    useEffect(() => {
+      store.dispatch(changeContentActionCreator({
+        index: props.number,
+        content: dream
+      }))
+    }, [dream])
+
+   
     function handleChange(e){
       setDream({...dream, [e.target.name] : e.target.value})
     }
@@ -63,7 +80,6 @@ const NewDream = (props) => {
         }
         props.newNotificationActionCreator("Dream was saved")
         setHidden(true)
-        setDream({name:"", content:""})
       }catch(exception){
         console.error(exception)
         props.newNotificationActionCreator("Wasn't able to save the dream")
@@ -73,6 +89,7 @@ const NewDream = (props) => {
    const handleClose = () => {
     setHidden(true)
    }
+
 
     return (
       <Grid item sm={4} xs={12} style={style}>
@@ -120,4 +137,10 @@ const NewDream = (props) => {
     );
 };
 
-export default connect(null, { addDream, newNotificationActionCreator })(NewDream);
+const mapStateToProps = (state) => {
+  return {
+    content: state.newDreamContent
+  }
+}
+
+export default connect(mapStateToProps, { addDream, newNotificationActionCreator,  })(NewDream);

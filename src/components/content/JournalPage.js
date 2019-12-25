@@ -24,20 +24,17 @@ const useStyles = makeStyles(theme => ({
 function JournalPage(props) {
   const classes = useStyles();
 
-  var index = 100
-  const newDream = createNewDream(index)
+  var index = props.dreamComponents.length
  
-  function createNewDream(index){
-   
-    return function newDream() {
-      index = index + 1
-      return store.dispatch(newFormActionCreator(<NewDream key={index} number={index} ></NewDream>))
-    }
+  const handleClick = () => {
+      store.dispatch(newFormActionCreator(<NewDream key={index} number={index + 1} ></NewDream>))
   }
+     
+  
   return (
     <div className="container" style={{ padding: 15 }}>
       <div>
-        <Fab onClick={() => newDream()} color="primary" aria-label="add" className={classes.fab}>
+        <Fab onClick={() => handleClick()} color="primary" aria-label="add" className={classes.fab}>
           <AddIcon />
         </Fab>
       </div>
