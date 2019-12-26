@@ -17,20 +17,18 @@ const newDreamFormsReducer = (state = [], action) => {
             console.log("hieer", action.index)
             return state.filter(x => {
                 console.log("hieer2", x.key)
-                return x.props.index !== action.index
+                return x.index !== action.index
             })
         default: return state   
     }
 }
 
+
 /*{
     component: <NewDream key={index} index={index} ></NewDream>,
     content: {name: unennimi, content: unen sisältö},
     index: index
-  }*/
-
-  
-
+}*/
 export const newFormActionCreator = (newDreamState) => {
     return {
             type: "NEW_DREAM_FORM",
@@ -44,9 +42,7 @@ export const newFormActionCreator = (newDreamState) => {
         content: {name: ldklgkf, conteent: ölöldfgdf},
         index: 2
     }
-  
-  */
-
+*/
 export const changeContent = (newContentObject) => {
     return dispatch => {
         dispatch({

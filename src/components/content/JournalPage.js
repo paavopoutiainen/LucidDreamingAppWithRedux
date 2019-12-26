@@ -24,8 +24,11 @@ const useStyles = makeStyles(theme => ({
 function JournalPage(props) {
   const classes = useStyles();
 
-
-  var index = props.dreamComponents.length
+  var index = props.newDreamForms.length !== 0 ? Math.max(...props.newDreamForms.map(x => x.index)) + 1 : 0
+  /*eli ongelma tässä on se, että kun alustamme indeksejä storeeen uuden komponentin luonnin yhteydessä, storen taulukon pituuden
+  avulla ja sitten kun poistamme sieltä komponentteja niin storeen syntyy päällekkäisillä indekseillä varustettuja olioita eli 
+  joko meidän on keksittävä parempi tapa alustaa indeksit storeen ja komponentin propseiksi tai sitten meidän on palattava takaisin 
+  käyttämään hidden booleania komponentin piiloittamiseen*/
  
   const handleClick = () => {
       store.dispatch(newFormActionCreator({
@@ -43,7 +46,7 @@ function JournalPage(props) {
         </Fab>
       </div>
       <Grid container spacing ={1} styles={{}}>
-        {props.dreamComponents}
+        {props.newDreamForms.map(x => x.component)}
       </Grid>
    
     </div>
@@ -60,7 +63,7 @@ function JournalPage(props) {
 
   const mapStateToProps = (state) => {
     return {
-      dreamComponents: state.newDreamForms.map(x => x.component)
+      newDreamForms: state.newDreamForms
     }
   }
 

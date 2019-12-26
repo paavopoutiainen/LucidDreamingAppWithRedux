@@ -10,7 +10,6 @@ import { connect } from "react-redux"
 import { addDream } from "../../reducers/dreamsReducer"
 import { newNotificationActionCreator } from "../../reducers/notificationReducer"
 import { changeContent, deleteNewDreamComponent } from "../../reducers/newDreamFormsReducer"
-import store from "../../store"
  
 
 const useStyles = makeStyles(theme => ({
@@ -42,19 +41,10 @@ const useStyles = makeStyles(theme => ({
 const NewDream = (props) => {
     const classes = useStyles();
     const [dream, setDream] = useState({name: "", content:""})
-    const [thisHidden, setHidden] = useState(false)
-    const style = thisHidden ? {display:"none"} :{}
-
-    var reduxStateOfThisInstance = props.contents.find(x => x.index === props.index)
   
     useEffect(() => {
-      console.log(props.index)
-      
-
-      if(reduxStateOfThisInstance){
-        console.log("here2")
-        setDream(reduxStateOfThisInstance.content)
-        setHidden(reduxStateOfThisInstance.hidden)
+      if(props.content){
+        setDream(props.content)
       }
     }, [])
 
@@ -67,39 +57,8 @@ const NewDream = (props) => {
         index: props.index,
         content: dream
       })
-      /*store.dispatch(changeContentActionCreator({
-        index: props.index,
-        content: dream,
-        hidden: thisHidden
-      }))*/
     }, [dream])
 
-    /* okei eli nyt me varmaan halutaan siirtää toi newDreamin state kokonaan redux 
-    storeen koska meillä pitää näköjään kuitenkin olla se siellä, niin sama kai se on pitää siellä 
-    yksinomaan
-    
-    ja se state, joka kuvastaa tätä newDreamii voisi olla taulukko, jossa olisi se content ja sitten se hidden kenttä ja index
-    eli 
-    [
-      {
-        index: 1,
-        content: {name: klsjklfdjsf, content: dsgfjkldfhdf},
-        hidden: true
-      }
-
-    ]
-    
-    */
-
-
-    
-/*newContentObject-olion-rakenne:
-    {
-        content: {name: ldklgkf, conteent: ölöldfgdf},
-        index: 2
-    }
-  
-  */
    
     function handleChange(e){
       setDream({...dream, [e.target.name] : e.target.value})
@@ -114,19 +73,12 @@ const NewDream = (props) => {
       }
       try{
         const response = await props.addDream(newDream)
-        console.log("yhyy",response)
         if(!response){
           throw new Error("Dream not saved")
         }
         props.newNotificationActionCreator("Dream was saved")
-        setHidden(true)
-        //täällä me voitais oikeastaan tehdö siten, että poistetaan redux stoesta kokonaan se kyseisen indeksin newDream tai sitten ei 
-        //koska se aiheuttaa ongelmia siihen että sitten pitäisi poistaa myös se kyseinen newDreamkomponentti storesta
-        /*store.dispatch(changeContentActionCreator({
-          index: props.index,
-          content: {name: "", content: ""},
-          hidden: true
-        }))*/
+        props.deleteNewDreamComponent(props.index)
+
       }catch(exception){
         console.error(exception)
         props.newNotificationActionCreator("Wasn't able to save the dream")
@@ -134,21 +86,12 @@ const NewDream = (props) => {
     }
 
    const handleClose = () => {
-    /*store.dispatch(changeContentActionCreator({
-      index: props.index,
-      content: {name: "", content: ""},
-      hidden: true
-    }))*/
-    console.log("häh3")
     props.deleteNewDreamComponent(props.index)
-    props.deleteContent(props.index)
-    console.log("4")
-    setHidden(true)
    }
 
 
     return (
-      <Grid item sm={4} xs={12} style={style}>
+      <Grid item sm={4} xs={12} >
         <Paper className={classes.paper}  >
        
         <IconButton edge="end" color="inherit" aria-label="close" onClick={handleClose}>
@@ -193,9 +136,9 @@ const NewDream = (props) => {
     );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    contents: state.newDreamContent
+    content: state.newDreamForms.find(x => x.index === ownProps.index).content
   }
 }
 
