@@ -25,10 +25,6 @@ function JournalPage(props) {
   const classes = useStyles();
 
   var index = props.newDreamForms.length !== 0 ? Math.max(...props.newDreamForms.map(x => x.index)) + 1 : 0
-  /*eli ongelma tässä on se, että kun alustamme indeksejä storeeen uuden komponentin luonnin yhteydessä, storen taulukon pituuden
-  avulla ja sitten kun poistamme sieltä komponentteja niin storeen syntyy päällekkäisillä indekseillä varustettuja olioita eli 
-  joko meidän on keksittävä parempi tapa alustaa indeksit storeen ja komponentin propseiksi tai sitten meidän on palattava takaisin 
-  käyttämään hidden booleania komponentin piiloittamiseen*/
  
   const handleClick = () => {
       store.dispatch(newFormActionCreator({
@@ -52,15 +48,7 @@ function JournalPage(props) {
     </div>
     )
   }
-  /*MYÖHÄISILLAN IDEA, MIETI AAAMULLA 
-    Jos veisimmekin siinä plus-painikkeen painalluksen yhteydessä sinne storeen tämmöisen olion:
-    {
-      component: <NewDream key={index} index={index} ></NewDream>,
-      content: {name: unennimi, content: unen sisältö},
-      index: index
-    }
-  */
-
+ 
   const mapStateToProps = (state) => {
     return {
       newDreamForms: state.newDreamForms
