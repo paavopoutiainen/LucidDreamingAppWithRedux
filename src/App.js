@@ -34,7 +34,6 @@ function App(props) {
 
 
   useEffect(() => {
-    //fetchDreams()
     props.getDreams()
   }, [])
 

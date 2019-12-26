@@ -1,11 +1,20 @@
 import dreamsService from "../services/dreams"
+import moment from "moment"
+import { arrowFunctionExpression } from "@babel/types"
+
 
 const dreamReducer = (state = [], action) => {
     switch (action.type){
         case "ALL_DREAMS":
-            return action.data
+            return action.data.map(d => {
+                const date = moment(d.date)
+                return {...d, date: date.format('MMMM Do YYYY, h:mm:ss a')}
+              }).reverse()
         case "ADD_DREAM":
-            return state.concat(action.data)
+            const copyOfState = [...state]
+            const date = moment(action.data.date)
+            copyOfState.splice(0, 0, { ...action.data, date: date.format('MMMM Do YYYY, h:mm:ss a') })
+            return copyOfState
         default: return state    
     }
 }
@@ -15,7 +24,7 @@ export const getDreams = () => {
         const response = await dreamsService.getAll()
         dispatch({
             type: "ALL_DREAMS",
-            data: response.reverse()
+            data: response
         })
     }
 }

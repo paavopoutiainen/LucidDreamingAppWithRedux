@@ -3,11 +3,11 @@ import moment from "moment"
 
 const getAll = async () => {
     const dreams = await axios.get("http://localhost:3001/api/dreams")
-    const dateFixedDreams = dreams.data.map(d => {
+    /*const dateFixedDreams = dreams.data.map(d => {
       const date = moment(d.date)
       return {...d, date: date.format('MMMM Do YYYY, h:mm:ss a')}
-    })
-    return dateFixedDreams
+    })*/
+    return dreams.data
 }   
 
 const create = async(newDream) => {

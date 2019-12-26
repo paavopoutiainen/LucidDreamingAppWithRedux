@@ -71,6 +71,7 @@ const NewDream = (props) => {
         content: dream.content,
         lucid: true
       }
+      console.log(newDream)
       try{
         const response = await props.addDream(newDream)
         if(!response){
