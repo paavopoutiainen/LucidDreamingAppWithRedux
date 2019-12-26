@@ -2,20 +2,26 @@
 
 const newDreamContentReducer = (state = [], action) => {
     switch(action.type) {
-        case "CHANGE_CONTENT":
-            console.log(state)
-            const newState = state.filter(x => x.index !== action.data.index)
-            //changedObject = {...changedObject, content: action.data.content } }
-
-            return newState.concat(action.data)
+       
+        case "DELETE_CONTENT":
+            return state.filter(x => x.index !== action.index)
         default: return state    
     }
 }
 
-export const changeContentActionCreator = (contentObject) => {
+/*export const changeContentActionCreator = (contentObject) => {
     return {
         type: "CHANGE_CONTENT",
         data: contentObject
+    }
+}*/
+
+export const deleteContent = (index) => {
+    return dispatch => {
+        dispatch({
+            type: "DELETE_CONTENT",
+            index
+        })
     }
 }
 

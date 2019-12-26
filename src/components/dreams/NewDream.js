@@ -9,7 +9,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { connect } from "react-redux"
 import { addDream } from "../../reducers/dreamsReducer"
 import { newNotificationActionCreator } from "../../reducers/notificationReducer"
-import { changeContentActionCreator } from "../../reducers/newDreamContentReducer"
+import { changeContent, deleteNewDreamComponent } from "../../reducers/newDreamFormsReducer"
 import store from "../../store"
  
 
@@ -62,11 +62,16 @@ const NewDream = (props) => {
     // myös eka renderöinti aiheuttaa tämän hookin kutsun, eli ilmeisesti koska state luodaan
     useEffect(() => {
       console.log("here")
-      store.dispatch(changeContentActionCreator({
+      
+      props.changeContent({
+        index: props.index,
+        content: dream
+      })
+      /*store.dispatch(changeContentActionCreator({
         index: props.index,
         content: dream,
         hidden: thisHidden
-      }))
+      }))*/
     }, [dream])
 
     /* okei eli nyt me varmaan halutaan siirtää toi newDreamin state kokonaan redux 
@@ -86,9 +91,19 @@ const NewDream = (props) => {
     
     */
 
+
+    
+/*newContentObject-olion-rakenne:
+    {
+        content: {name: ldklgkf, conteent: ölöldfgdf},
+        index: 2
+    }
+  
+  */
    
     function handleChange(e){
       setDream({...dream, [e.target.name] : e.target.value})
+      
     }
 
     const handleSaveClick = async() => {
@@ -107,11 +122,11 @@ const NewDream = (props) => {
         setHidden(true)
         //täällä me voitais oikeastaan tehdö siten, että poistetaan redux stoesta kokonaan se kyseisen indeksin newDream tai sitten ei 
         //koska se aiheuttaa ongelmia siihen että sitten pitäisi poistaa myös se kyseinen newDreamkomponentti storesta
-        store.dispatch(changeContentActionCreator({
+        /*store.dispatch(changeContentActionCreator({
           index: props.index,
           content: {name: "", content: ""},
           hidden: true
-        }))
+        }))*/
       }catch(exception){
         console.error(exception)
         props.newNotificationActionCreator("Wasn't able to save the dream")
@@ -119,11 +134,15 @@ const NewDream = (props) => {
     }
 
    const handleClose = () => {
-    store.dispatch(changeContentActionCreator({
-      index: props.number,
+    /*store.dispatch(changeContentActionCreator({
+      index: props.index,
       content: {name: "", content: ""},
       hidden: true
-    }))
+    }))*/
+    console.log("häh3")
+    props.deleteNewDreamComponent(props.index)
+    props.deleteContent(props.index)
+    console.log("4")
     setHidden(true)
    }
 
@@ -135,7 +154,7 @@ const NewDream = (props) => {
         <IconButton edge="end" color="inherit" aria-label="close" onClick={handleClose}>
           <CloseIcon />
         </IconButton>
-           <h5 style={{margin: 8}}>Dream {props.number}</h5>
+           <h5 style={{margin: 8}}>Dream {props.index}</h5>
             <form className={classes.paper}>
                 <TextField
                     id="filled-textarea"
@@ -180,4 +199,9 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { addDream, newNotificationActionCreator,  })(NewDream);
+export default connect(mapStateToProps, { 
+  addDream, 
+  newNotificationActionCreator, 
+  deleteNewDreamComponent, 
+  changeContent 
+})(NewDream);

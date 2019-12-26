@@ -28,7 +28,11 @@ function JournalPage(props) {
   var index = props.dreamComponents.length
  
   const handleClick = () => {
-      store.dispatch(newFormActionCreator(<NewDream key={index} indexr={index + 1} ></NewDream>))
+      store.dispatch(newFormActionCreator({
+        component: <NewDream key={index} index={index} ></NewDream>,
+        content: {name: "", content: ""},
+        index: index
+      }))
   } 
   
   return (
@@ -45,10 +49,18 @@ function JournalPage(props) {
     </div>
     )
   }
+  /*MYÖHÄISILLAN IDEA, MIETI AAAMULLA 
+    Jos veisimmekin siinä plus-painikkeen painalluksen yhteydessä sinne storeen tämmöisen olion:
+    {
+      component: <NewDream key={index} index={index} ></NewDream>,
+      content: {name: unennimi, content: unen sisältö},
+      index: index
+    }
+  */
 
   const mapStateToProps = (state) => {
     return {
-      dreamComponents: state.newDreamForms
+      dreamComponents: state.newDreamForms.map(x => x.component)
     }
   }
 
